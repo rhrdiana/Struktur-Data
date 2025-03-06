@@ -46,7 +46,7 @@ class Buku<T, U> {
 }
 
 
-public class Main {
+public class TugasM1 {
     public static void main(String[] args) {
         List<Buku<?, ?>> daftarBuku = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
