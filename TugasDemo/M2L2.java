@@ -1,11 +1,10 @@
 import java.util.*;
 
-public class L2Demo2 {
+public class M2L2{
     public static void main(String[] args) {
         final int SIZE = 100000;
         Random random = new Random();
 
-        // Inisialisasi ArrayList dan LinkedList
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
 
@@ -14,7 +13,6 @@ public class L2Demo2 {
             linkedList.add(i);
         }
 
-        // 1. Penyisipan di awal
         long startTime = System.nanoTime();
         arrayList.add(0, -1);
         long arrayInsertTime = System.nanoTime() - startTime;
@@ -23,7 +21,6 @@ public class L2Demo2 {
         linkedList.add(0, -1);
         long linkedInsertTime = System.nanoTime() - startTime;
 
-        // 2. Penghapusan di tengah
         int midIndex = SIZE / 2;
 
         startTime = System.nanoTime();
@@ -34,7 +31,6 @@ public class L2Demo2 {
         linkedList.remove(midIndex);
         long linkedRemoveTime = System.nanoTime() - startTime;
 
-        // 3. Akses elemen acak
         int randomIndex = random.nextInt(SIZE);
 
         startTime = System.nanoTime();
@@ -45,10 +41,24 @@ public class L2Demo2 {
         linkedList.get(randomIndex);
         long linkedAccessTime = System.nanoTime() - startTime;
 
-        // Menampilkan hasil
+        startTime = System.nanoTime();
+        arrayList.add(midIndex, -1);
+        long arrayInsertMidTime = System.nanoTime() - startTime;
+
+        startTime = System.nanoTime();
+        linkedList.add(midIndex, -1);
+        long linkedInsertMidTime = System.nanoTime() - startTime;
+
+        long memoryAfterArray = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long memoryAfterLinked = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+
         System.out.println("Waktu Penyisipan di Awal:");
         System.out.println("ArrayList: " + arrayInsertTime + " ns");
         System.out.println("LinkedList: " + linkedInsertTime + " ns");
+
+        System.out.println("\nWaktu Penyisipan di Tengah:");
+        System.out.println("ArrayList: " + arrayInsertMidTime + " ns");
+        System.out.println("LinkedList: " + linkedInsertMidTime + " ns");
 
         System.out.println("\nWaktu Penghapusan di Tengah:");
         System.out.println("ArrayList: " + arrayRemoveTime + " ns");
@@ -58,15 +68,20 @@ public class L2Demo2 {
         System.out.println("ArrayList: " + arrayAccessTime + " ns");
         System.out.println("LinkedList: " + linkedAccessTime + " ns");
 
-        // 4. Analisis (dalam komentar)
+        System.out.println("\nPerbandingan konsumsi memori:");
+        System.out.println("ArrayList: " + memoryAfterArray + " bytes");
+        System.out.println("LinkedList: " + memoryAfterLinked + " bytes");
+
         /*
-        ANALISIS:
-        - Penyisipan di awal lebih cepat pada LinkedList karena hanya menyesuaikan referensi node pertama.
-          Pada ArrayList, semua elemen harus digeser ke kanan, menyebabkan waktu lebih lama.
-        - Penghapusan di tengah lebih efisien pada LinkedList karena hanya perlu memperbarui referensi node sebelum dan setelah elemen yang dihapus.
-          ArrayList harus menggeser elemen setelahnya ke kiri.
-        - Akses elemen acak jauh lebih cepat di ArrayList karena menggunakan indeks langsung (O(1)),
-          sementara LinkedList harus melakukan traversal dari node pertama (O(n)).
+        Penjelasan dari Experiment:
+        1. Penyisipan di awal lebih cepat pada LinkedList karena hanya mengubah referensi node,
+           sedangkan ArrayList harus menggeser semua elemen.
+        2. Penyisipan di tengah cenderung lebih lambat di LinkedList karena harus menelusuri node.
+        3. Penghapusan di tengah lebih cepat di ArrayList karena akses langsung berdasarkan indeks,
+           sementara LinkedList harus menelusuri node satu per satu.
+        4. Akses elemen acak jauh lebih cepat pada ArrayList karena menggunakan indeks langsung (O(1)),
+           sedangkan LinkedList membutuhkan traversal node (O(n)).
+        5. Konsumsi memori LinkedList lebih besar karena menyimpan referensi node berikut dan sebelumnya.
         */
     }
 }
