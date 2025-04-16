@@ -29,6 +29,7 @@ class AntrianBarang implements Queue {
             System.out.println("Barang berhasil ditambahkan ke antrian.");
         } else {
             System.out.println("Antrian penuh!");
+            System.out.println("Antrian penuh!");
         }
     }
 
