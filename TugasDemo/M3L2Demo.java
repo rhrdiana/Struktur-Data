@@ -42,7 +42,16 @@ class AntrianBarang implements Queue {
             head++;
         }
     }
-
+    public void display() {
+        if (head == tail) {
+            System.out.println("Antrian kosong.");
+        } else {
+            System.out.println("Daftar Antrian Barang:");
+            for (int i = head; i < tail; i++) {
+                System.out.println((i - head + 1) + ". " + queue[i]);
+            }
+        }
+    }
 }
 
 public class M3L2Demo{
