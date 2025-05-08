@@ -6,13 +6,13 @@ enum kategori {
     NOVEL, SELF_DEVELOPMENT, TEKNOLOGI, ANAK
 }
 
-class Buku<T, U> {
+class Buku1<T, U> {
     private T judul;
     private U pengarang;
     private double harga;
     private kategori kategori;
 
-    public Buku(T judul, U pengarang, double harga, kategori kategori) {
+    public Buku1(T judul, U pengarang, double harga, kategori kategori) {
         this.judul = judul;
         this.pengarang = pengarang;
         this.harga = harga;
@@ -48,7 +48,7 @@ class Buku<T, U> {
 
 public class TugasM1 {
     public static void main(String[] args) {
-        List<Buku<?, ?>> daftarBuku = new ArrayList<>();
+        List<Buku1<?, ?>> daftarBuku = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Masukkan jumlah buku: ");
@@ -75,7 +75,7 @@ public class TugasM1 {
 
             kategori kategori1 = kategori.values()[kategoriIndex];
 
-            daftarBuku.add(new Buku<>(judul, pengarang, harga, kategori1));
+            daftarBuku.add(new Buku1<>(judul, pengarang, harga, kategori1));
         }
 
         System.out.println("\nDaftar Buku:");
@@ -84,8 +84,8 @@ public class TugasM1 {
         scanner.close();
     }
 
-    public static void display(List<? extends Buku<?, ?>> books) {
-        for (Buku<?, ?> buku : books) {
+    public static void display(List<? extends Buku1<?, ?>> books) {
+        for (Buku1<?, ?> buku : books) {
             buku.Info();
         }
     }
