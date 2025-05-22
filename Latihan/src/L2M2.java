@@ -1,6 +1,6 @@
 class Node{
     int value;
-    Node link;
+    Modul5Codelab.Node link;
 
     public Node(int value){
         this.value = value;
@@ -12,16 +12,16 @@ class Node{
 
 public class L2M2{
     public static void main(String[] args) {
-        Node start = new Node(8);
+        Modul5Codelab.Node start = new Modul5Codelab.Node(8);
 
-        Node middle = new Node(12);
+        Modul5Codelab.Node middle = new Modul5Codelab.Node(12);
         start.link = middle;
 
-        Node end = new Node(20);
+        Modul5Codelab.Node end = new Modul5Codelab.Node(20);
         middle.link = end;
 
         System.out.println("Isi Linkedlist: ");
-        Node pointer = start;
+        Modul5Codelab.Node pointer = start;
         while (pointer != null){
             System.out.println(pointer.value);
             pointer = pointer.link;
